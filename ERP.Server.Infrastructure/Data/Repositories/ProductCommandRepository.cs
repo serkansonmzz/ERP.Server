@@ -7,9 +7,14 @@ namespace ERP.Server.Infrastructure.Data.Repositories;
 
 public class ProductCommandRepository : Base.EfCommandRepository<Product>, IProductCommandRepository
 {
-    public ProductCommandRepository(ApplicationDbContext context) 
+    public ProductCommandRepository(ApplicationDbContext context)
         : base(context)
     {
+    }
+
+    public async Task<Product?> GetByIdAsync(Guid productId, CancellationToken cancellationToken = default)
+    {
+        return await _dbSet.FirstOrDefaultAsync(p => p.Id == productId, cancellationToken);
     }
 
     public async Task UpdateStockAsync(Guid productId, int quantity, CancellationToken cancellationToken = default)

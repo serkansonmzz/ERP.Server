@@ -7,6 +7,7 @@ namespace ERP.Server.Domain.Interfaces.Repositories;
 public interface IProductCommandRepository : ICommandRepository<Product>
 {
     // Product'a özel command'lar buraya eklenir
+    Task<Product?> GetByIdAsync(Guid productId, CancellationToken cancellationToken = default);
     Task UpdateStockAsync(Guid productId, int quantity, CancellationToken cancellationToken = default);
     Task UpdatePriceAsync(Guid productId, decimal newPrice, CancellationToken cancellationToken = default);
 }
