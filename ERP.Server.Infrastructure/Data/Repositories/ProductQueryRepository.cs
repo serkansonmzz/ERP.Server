@@ -32,7 +32,6 @@ public class ProductQueryRepository : Base.QueryRepository<Product>, IProductQue
         // Apply the index
         _collection.Indexes.CreateOne(model);
     }
-    }
 
     public async Task<IReadOnlyList<Product>> GetProductsByTypeAsync(ProductType type, CancellationToken cancellationToken = default)
     {
