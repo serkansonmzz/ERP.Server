@@ -18,8 +18,7 @@ public class ProductCommandRepository : Base.EfCommandRepository<Product>, IProd
         if (product == null)
             throw new KeyNotFoundException($"Product with ID {productId} not found");
 
-        // product.StockQuantity = quantity; // Uncomment when StockQuantity is added to Product
-        product.SetUpdated();
+        product.UpdateStock(quantity);
         
         await _context.SaveChangesAsync(cancellationToken);
     }
@@ -30,8 +29,7 @@ public class ProductCommandRepository : Base.EfCommandRepository<Product>, IProd
         if (product == null)
             throw new KeyNotFoundException($"Product with ID {productId} not found");
 
-        // product.Price = newPrice; // Uncomment when Price is added to Product
-        product.SetUpdated();
+        product.UpdatePrice(newPrice);
         
         await _context.SaveChangesAsync(cancellationToken);
     }

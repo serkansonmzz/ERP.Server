@@ -14,7 +14,7 @@ public abstract class QueryRepository<T> : IQueryRepository<T> where T : Entity
         _collection = context.Database.GetCollection<T>(collectionName);
     }
 
-    public virtual async Task<T?> GetByIdAsync(string id, CancellationToken cancellationToken = default)
+    public virtual async Task<T?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
         var filter = Builders<T>.Filter.Eq(x => x.Id, id);
         return await _collection.Find(filter).FirstOrDefaultAsync(cancellationToken);
