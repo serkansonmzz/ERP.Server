@@ -85,8 +85,8 @@ public class UnitOfWork : IUnitOfWork, IAsyncDisposable
         _productQueryRepository = productQueryRepository ?? throw new ArgumentNullException(nameof(productQueryRepository));
     }
 
-    public IProductCommandRepository Products => _productCommandRepository!;
-    public IProductQueryRepository ProductQueries => _productQueryRepository!;
+    public IProductCommandRepository ProductCommandRepository => _productCommandRepository!;
+    public IProductQueryRepository ProductQueryRepository => _productQueryRepository!;
 
     public async Task BeginTransactionAsync(CancellationToken cancellationToken = default)
     {
@@ -98,7 +98,7 @@ public class UnitOfWork : IUnitOfWork, IAsyncDisposable
         _currentTransaction = await _dbContext.Database.BeginTransactionAsync(cancellationToken);
     }
 
-    public async Task CommitTransactionAsync(CancellationToken cancellationToken = default)
+    public async Task CommitAsync(CancellationToken cancellationToken = default)
     {
         try
         {
@@ -110,7 +110,7 @@ public class UnitOfWork : IUnitOfWork, IAsyncDisposable
         }
         catch
         {
-            await RollbackTransactionAsync(cancellationToken);
+            await RollbackAsync(cancellationToken);
             throw;
         }
         finally
@@ -123,7 +123,7 @@ public class UnitOfWork : IUnitOfWork, IAsyncDisposable
         }
     }
 
-    public async Task RollbackTransactionAsync(CancellationToken cancellationToken = default)
+    public async Task RollbackAsync(CancellationToken cancellationToken = default)
     {
         try
         {
