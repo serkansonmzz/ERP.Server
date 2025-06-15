@@ -5,34 +5,34 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ERP.Server.Infrastructure.Data.Repositories;
 
-public class ProductCommandRepository : Repository<Product>, IProductCommandRepository
+public class ProductCommandRepository : Base.EfCommandRepository<Product>, IProductCommandRepository
 {
-    public ProductCommandRepository(DbContext dbContext) : base(dbContext)
+    public ProductCommandRepository(ApplicationDbContext context) 
+        : base(context)
     {
     }
 
     public async Task UpdateStockAsync(Guid productId, int quantity, CancellationToken cancellationToken = default)
     {
-        var product = await GetByIdAsync(productId, cancellationToken);
+        var product = await _dbSet.FirstOrDefaultAsync(p => p.Id == productId, cancellationToken);
         if (product == null)
             throw new KeyNotFoundException($"Product with ID {productId} not found");
 
-        // Burada stok güncelleme mantığı uygulanabilir
-        // Örnek: product.StockQuantity = quantity;
-        // Gerçek uygulamada stok takibi için daha detaylı bir yapı gerekebilir
+        // product.StockQuantity = quantity; // Uncomment when StockQuantity is added to Product
+        product.SetUpdated();
         
-        await UpdateAsync(product, cancellationToken);
+        await _context.SaveChangesAsync(cancellationToken);
     }
 
     public async Task UpdatePriceAsync(Guid productId, decimal newPrice, CancellationToken cancellationToken = default)
     {
-        var product = await GetByIdAsync(productId, cancellationToken);
+        var product = await _dbSet.FirstOrDefaultAsync(p => p.Id == productId, cancellationToken);
         if (product == null)
             throw new KeyNotFoundException($"Product with ID {productId} not found");
 
-        // Fiyat güncelleme mantığı
-        // Örnek: product.Price = newPrice;
+        // product.Price = newPrice; // Uncomment when Price is added to Product
+        product.SetUpdated();
         
-        await UpdateAsync(product, cancellationToken);
+        await _context.SaveChangesAsync(cancellationToken);
     }
 }

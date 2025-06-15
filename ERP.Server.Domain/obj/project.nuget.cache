@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "fShSSxYlhsc=",
+  "dgSpecHash": "rTGAPzUEq0A=",
   "success": true,
   "projectFilePath": "C:\\Users\\Serkan\\Desktop\\Erp_Project\\ERP.Server.Domain\\ERP.Server.Domain.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Serkan\\.nuget\\packages\\ardalis.smartenum\\8.0.0\\ardalis.smartenum.8.0.0.nupkg.sha512",
-    "C:\\Users\\Serkan\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512"
+    "C:\\Users\\Serkan\\.nuget\\packages\\mongodb.bson\\3.4.0\\mongodb.bson.3.4.0.nupkg.sha512",
+    "C:\\Users\\Serkan\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512",
+    "C:\\Users\\Serkan\\.nuget\\packages\\system.memory\\4.5.5\\system.memory.4.5.5.nupkg.sha512",
+    "C:\\Users\\Serkan\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512"
   ],
   "logs": []
 }
