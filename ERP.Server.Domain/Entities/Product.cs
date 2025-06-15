@@ -16,8 +16,8 @@ public sealed class Product : Entity
         Type = type ?? throw new ArgumentNullException(nameof(type));
     }
 
-    public string Name { get; private set; }
-    public ProductType Type { get; private set; }
+    public required string Name { get; set; }
+    public required ProductType Type { get; set; }
 
 /*
     * Product'ın adını ve tipini güncellemek için kullanıcı tarafından çağrılan metodumuz.

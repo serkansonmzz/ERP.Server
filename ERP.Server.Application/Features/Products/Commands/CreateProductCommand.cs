@@ -54,7 +54,7 @@ public sealed class CreateProductCommandHandler : IRequestHandler<CreateProductC
                 Description = request.Description
             };
 
-            await _unitOfWork.ProductRepository.AddAsync(product, cancellationToken);
+            await _unitOfWork.ProductCommandRepository.AddAsync(product, cancellationToken);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
         
             _logger.LogInformation("Product created with ID: {ProductId}", product.Id);

@@ -4,8 +4,9 @@ namespace ERP.Server.Domain.Interfaces;
 
 public interface IUnitOfWork : IAsyncDisposable
 {
-    // Repository'ler burada tanımlanacak
-    IProductRepository ProductRepository { get; }
+    // CQRS Repositories
+    IProductCommandRepository ProductCommandRepository { get; }
+    IProductQueryRepository ProductQueryRepository { get; }
     
     // Transaction yönetimi için
     Task BeginTransactionAsync(CancellationToken cancellationToken = default);

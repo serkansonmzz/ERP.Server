@@ -32,7 +32,7 @@ public sealed class GetAllProductsQueryHandler
     {
         try
         {
-            var products = await _unitOfWork.ProductRepository.GetAllAsync(cancellationToken);
+            var products = await _unitOfWork.ProductQueryRepository.GetAllAsync(cancellationToken);
             var result = _mapper.Map<IReadOnlyList<ProductDto>>(products);
             
             return Result<IReadOnlyList<ProductDto>>.Success(
