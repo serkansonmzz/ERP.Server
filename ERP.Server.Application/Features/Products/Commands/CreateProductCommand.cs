@@ -49,12 +49,21 @@ public sealed class CreateProductCommandHandler : IRequestHandler<CreateProductC
                     new List<string> { "Lütfen geçerli bir ürün tipi seçiniz" });
             }
 
-            var product = new Product(request.Name, productType!)
+            // Create product with required properties
+            var product = new Product(
+                name: request.Name.Trim(),
+                type: productType!);
+            
+            // Set optional description if provided
+            if (!string.IsNullOrWhiteSpace(request.Description))
             {
-                Description = request.Description
-            };
+                product.Update(
+                    name: request.Name.Trim(),
+                    type: productType!,
+                    description: request.Description.Trim());
+            }
 
-            await _unitOfWork.ProductCommandRepository.AddAsync(product, cancellationToken);
+            await _unitOfWork.Products.AddAsync(product, cancellationToken);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
         
             _logger.LogInformation("Product created with ID: {ProductId}", product.Id);

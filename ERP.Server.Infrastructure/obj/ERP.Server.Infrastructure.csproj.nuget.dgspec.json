@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Serkan\\Desktop\\Erp_Project\\ERP.Server.Infrastructure\\ERP.Server.Infrastructure.csproj": {}
+    "C:\\Users\\Serkan\\Desktop\\Erp_Project\\ERP.Server.Infrastructure\\ERP.Server.Infrastructure.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Serkan\\Desktop\\Erp_Project\\ERP.Server.Domain\\ERP.Server.Domain.csproj": {
+    "C:\\Users\\Serkan\\Desktop\\Erp_Project\\ERP.Server.Domain\\ERP.Server.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Serkan\\Desktop\\Erp_Project\\ERP.Server.Domain\\ERP.Server.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Serkan\\Desktop\\Erp_Project\\ERP.Server.Domain\\ERP.Server.Domain.csproj",
         "projectName": "ERP.Server.Domain",
-        "projectPath": "c:\\Users\\Serkan\\Desktop\\Erp_Project\\ERP.Server.Domain\\ERP.Server.Domain.csproj",
+        "projectPath": "C:\\Users\\Serkan\\Desktop\\Erp_Project\\ERP.Server.Domain\\ERP.Server.Domain.csproj",
         "packagesPath": "C:\\Users\\Serkan\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Serkan\\Desktop\\Erp_Project\\ERP.Server.Domain\\obj\\",
+        "outputPath": "C:\\Users\\Serkan\\Desktop\\Erp_Project\\ERP.Server.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -79,14 +79,14 @@
         }
       }
     },
-    "c:\\Users\\Serkan\\Desktop\\Erp_Project\\ERP.Server.Infrastructure\\ERP.Server.Infrastructure.csproj": {
+    "C:\\Users\\Serkan\\Desktop\\Erp_Project\\ERP.Server.Infrastructure\\ERP.Server.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Serkan\\Desktop\\Erp_Project\\ERP.Server.Infrastructure\\ERP.Server.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\Serkan\\Desktop\\Erp_Project\\ERP.Server.Infrastructure\\ERP.Server.Infrastructure.csproj",
         "projectName": "ERP.Server.Infrastructure",
-        "projectPath": "c:\\Users\\Serkan\\Desktop\\Erp_Project\\ERP.Server.Infrastructure\\ERP.Server.Infrastructure.csproj",
+        "projectPath": "C:\\Users\\Serkan\\Desktop\\Erp_Project\\ERP.Server.Infrastructure\\ERP.Server.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\Serkan\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Serkan\\Desktop\\Erp_Project\\ERP.Server.Infrastructure\\obj\\",
+        "outputPath": "C:\\Users\\Serkan\\Desktop\\Erp_Project\\ERP.Server.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -107,8 +107,8 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "c:\\Users\\Serkan\\Desktop\\Erp_Project\\ERP.Server.Domain\\ERP.Server.Domain.csproj": {
-                "projectPath": "c:\\Users\\Serkan\\Desktop\\Erp_Project\\ERP.Server.Domain\\ERP.Server.Domain.csproj"
+              "C:\\Users\\Serkan\\Desktop\\Erp_Project\\ERP.Server.Domain\\ERP.Server.Domain.csproj": {
+                "projectPath": "C:\\Users\\Serkan\\Desktop\\Erp_Project\\ERP.Server.Domain\\ERP.Server.Domain.csproj"
               }
             }
           }
@@ -146,6 +146,10 @@
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
               "version": "[9.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Binder": {
+              "target": "Package",
+              "version": "[8.0.0, )"
             },
             "Microsoft.Extensions.DependencyInjection": {
               "target": "Package",

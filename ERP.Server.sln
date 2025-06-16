@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERP.Server.Application", "E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERP.Server.Infrastructure", "ERP.Server.Infrastructure\ERP.Server.Infrastructure.csproj", "{5DFA080E-BE4D-4E05-B32C-D56CF23C62F6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERP.Server.WebAPI", "ERP.Server.WebAPI\ERP.Server.WebAPI.csproj", "{C5864680-F5E4-4C4A-A253-BC9C75FFC4C9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,18 @@ Global
 		{5DFA080E-BE4D-4E05-B32C-D56CF23C62F6}.Release|x64.Build.0 = Release|Any CPU
 		{5DFA080E-BE4D-4E05-B32C-D56CF23C62F6}.Release|x86.ActiveCfg = Release|Any CPU
 		{5DFA080E-BE4D-4E05-B32C-D56CF23C62F6}.Release|x86.Build.0 = Release|Any CPU
+		{C5864680-F5E4-4C4A-A253-BC9C75FFC4C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5864680-F5E4-4C4A-A253-BC9C75FFC4C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5864680-F5E4-4C4A-A253-BC9C75FFC4C9}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C5864680-F5E4-4C4A-A253-BC9C75FFC4C9}.Debug|x64.Build.0 = Debug|Any CPU
+		{C5864680-F5E4-4C4A-A253-BC9C75FFC4C9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C5864680-F5E4-4C4A-A253-BC9C75FFC4C9}.Debug|x86.Build.0 = Debug|Any CPU
+		{C5864680-F5E4-4C4A-A253-BC9C75FFC4C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5864680-F5E4-4C4A-A253-BC9C75FFC4C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5864680-F5E4-4C4A-A253-BC9C75FFC4C9}.Release|x64.ActiveCfg = Release|Any CPU
+		{C5864680-F5E4-4C4A-A253-BC9C75FFC4C9}.Release|x64.Build.0 = Release|Any CPU
+		{C5864680-F5E4-4C4A-A253-BC9C75FFC4C9}.Release|x86.ActiveCfg = Release|Any CPU
+		{C5864680-F5E4-4C4A-A253-BC9C75FFC4C9}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

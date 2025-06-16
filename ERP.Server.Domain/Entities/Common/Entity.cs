@@ -32,7 +32,7 @@ public abstract class Entity
     public string? DeletedBy { get; protected set; }
     public bool IsDeleted { get; protected set; }
 
-    protected void SetUpdated(string? updatedBy = null)
+    public void SetUpdated(string? updatedBy = null)
     {
         UpdatedAt = DateTime.UtcNow;
         if (!string.IsNullOrEmpty(updatedBy))
