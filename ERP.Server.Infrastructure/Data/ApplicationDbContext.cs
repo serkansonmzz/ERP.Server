@@ -1,5 +1,6 @@
 using ERP.Server.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using ERP.Server.Infrastructure.Data.Configurations; 
 
 namespace ERP.Server.Infrastructure.Data;
 
@@ -13,11 +14,14 @@ public class ApplicationDbContext : DbContext
     public DbSet<Product> Products { get; set; }
     // Diğer DbSet'ler buraya eklenecek
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+   protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        base.OnModelCreating(modelBuilder);
-        
-        // Entity konfigürasyonları buraya eklenecek
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+    base.OnModelCreating(modelBuilder);
+    
+    // Manuel olarak configuration'ları ekleyin
+    modelBuilder.ApplyConfiguration(new ProductConfiguration());
+    
+    // Veya tüm configuration'ları otomatik olarak uygula
+    // modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 }
