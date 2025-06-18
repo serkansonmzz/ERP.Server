@@ -1,5 +1,6 @@
 using ERP.Server.Application;
 using ERP.Server.Infrastructure;
+using ERP.Server.Infrastructure.Services.Outbox;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services from other layers
 builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddHostedService<OutboxProcessorBackgroundService>();
 
 builder.Services.AddControllers();
 
