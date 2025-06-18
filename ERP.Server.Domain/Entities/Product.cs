@@ -106,8 +106,8 @@ public sealed class Product : Entity
         SetUpdated(updatedBy);
     }
 
-    public new void Delete()
+    public new void Delete(string? deletedBy = null)
     {
-        base.Delete();
+        base.Delete(deletedBy);
     }
 }

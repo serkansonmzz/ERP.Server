@@ -1,10 +1,11 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using MongoDB.Bson.Serialization.Attributes;
+using ERP.Server.Domain.Entities.Common;
 
 namespace ERP.Server.Domain.Entities.Common;
 
-public abstract class Entity
+public abstract class Entity: ISoftDelete
 {
     protected Entity()
     {
@@ -19,7 +20,7 @@ public abstract class Entity
     public Guid Id { get; protected set; }
     
     [Column(TypeName = "datetime2")]
-    public DateTime CreatedAt { get; protected set; }
+    public DateTime CreatedAt { get; set; }
     
     [Column(TypeName = "datetime2")]
     public DateTime? UpdatedAt { get; protected set; }
@@ -27,9 +28,9 @@ public abstract class Entity
     [Column(TypeName = "datetime2")]
     public DateTime? DeletedAt { get; protected set; }
     
-    public string? CreatedBy { get; protected set; }
+    public string? CreatedBy { get; set; }
     public string? UpdatedBy { get; protected set; }
-    public string? DeletedBy { get; protected set; }
+    public string? DeletedBy { get; set; }
     public bool IsDeleted { get; protected set; }
 
     public void SetUpdated(string? updatedBy = null)
@@ -45,9 +46,11 @@ public abstract class Entity
             CreatedBy = createdBy;
     }
 
-    public void Delete()
+    public virtual void Delete(string? deletedBy = null)
     {
-        IsDeleted = true;
-        DeletedAt = DateTime.UtcNow;
+            IsDeleted = true;
+            DeletedAt = DateTime.UtcNow;
+            DeletedBy = deletedBy;
+            SetUpdated(deletedBy);
     }
 }

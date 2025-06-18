@@ -55,10 +55,11 @@ public class ProductsController : BaseApiController
     }
 
     /// <summary>
-    /// Gets all products
+    /// Gets a product by its unique identifier.
     /// </summary>
+    /// <param name="id">The unique identifier of the product.</param>
     /// <param name="cancellationToken">Cancellation token</param>
-    /// <returns>List of all products</returns>
+    /// <returns>The product with the specified ID, or 404 if not found.</returns>
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]

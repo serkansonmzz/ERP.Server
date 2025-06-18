@@ -11,6 +11,9 @@ using MongoDB.Driver.Core.Configuration;
 using ERP.Server.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore.Storage;
 
+using ERP.Server.Application.Interfaces;
+using ERP.Server.Infrastructure.Services.Auth;
+
 namespace ERP.Server.Infrastructure;
 
 public static class DependencyInjection
@@ -47,6 +50,8 @@ public static class DependencyInjection
         // Register Command Repositories (MSSQL)
         services.AddScoped<IProductCommandRepository, ProductCommandRepository>();
         
+        services.AddScoped<ICurrentUserService, CurrentUserService>();
+
         // Register Query Repositories (MongoDB)
         services.AddScoped<IProductQueryRepository, ProductQueryRepository>();
         
