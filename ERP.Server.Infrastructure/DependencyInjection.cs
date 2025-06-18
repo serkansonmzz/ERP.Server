@@ -4,6 +4,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 using ERP.Server.Infrastructure.Data;
 using ERP.Server.Infrastructure.Data.Repositories;
+using ERP.Server.Infrastructure.Data.Repositories.OutBoxes;
 using ERP.Server.Domain.Interfaces.Repositories;
 using ERP.Server.Domain.Entities;
 using MongoDB.Driver;
@@ -49,6 +50,7 @@ public static class DependencyInjection
 
         // Register Command Repositories (MSSQL)
         services.AddScoped<IProductCommandRepository, ProductCommandRepository>();
+        services.AddScoped<IOutboxRepository, OutBoxRepository>();
         
         services.AddScoped<ICurrentUserService, CurrentUserService>();
 
