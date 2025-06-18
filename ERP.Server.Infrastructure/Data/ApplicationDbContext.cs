@@ -11,14 +11,23 @@ namespace ERP.Server.Infrastructure.Data;
 public class ApplicationDbContext : DbContext
 {
 
-    private readonly ICurrentUserService _currentUserService;
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, ICurrentUserService currentUserService)
+    private readonly ICurrentUserService? _currentUserService;
+
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        : base(options)
+    {
+    }
+    
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, ICurrentUserService? currentUserService)
         : base(options)
     {
         _currentUserService = currentUserService;
     }
 
+   
+
     public DbSet<Product> Products { get; set; }
+    public DbSet<OutBox> OutBoxes { get; set; }
     // Diğer DbSet'ler buraya eklenecek
 
    protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -49,7 +58,7 @@ public class ApplicationDbContext : DbContext
     }
 
 
-    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
             var entries = ChangeTracker.Entries()
                 .Where(e => e.Entity is Entity && 
@@ -83,4 +92,5 @@ public class ApplicationDbContext : DbContext
 
             return await base.SaveChangesAsync(cancellationToken);
     }
+
 }

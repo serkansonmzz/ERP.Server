@@ -1,4 +1,5 @@
-// ERP.Server.Application/Features/Products/Commands/CreateProductCommand.cs
+using System;
+using ERP.Server.Domain.Interfaces.Repositories;
 using ERP.Server.Application.Common.Results;
 using ERP.Server.Domain.Entities;
 using ERP.Server.Domain.Entities.Enums;
@@ -15,13 +16,16 @@ public sealed record CreateProductCommand(
 
 public sealed class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, Result<Guid>>
 {
+    private readonly IOutboxRepository _outboxRepository;
     private readonly IUnitOfWork _unitOfWork;
     private readonly ILogger<CreateProductCommandHandler> _logger;
 
     public CreateProductCommandHandler(
+        IOutboxRepository outboxRepository,
         IUnitOfWork unitOfWork, 
         ILogger<CreateProductCommandHandler> logger)
     {
+        _outboxRepository = outboxRepository;
         _unitOfWork = unitOfWork;
         _logger = logger;
     }
@@ -64,8 +68,19 @@ public sealed class CreateProductCommandHandler : IRequestHandler<CreateProductC
             }
 
             await _unitOfWork.Products.AddAsync(product, cancellationToken);
-            await _unitOfWork.SaveChangesAsync(cancellationToken);
         
+            //OutBox ekleme işlemi başlangıc
+            OutBox outBox = new OutBox
+            {
+                TableName = TableNameEnum.Product,
+                Operation = OperationEnum.Insert,
+                RecordId = product.Id
+            };
+            await _outboxRepository.AddAsync(outBox, cancellationToken);
+            //OutBox ekleme işlemi bitiş 
+
+
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
             _logger.LogInformation("Product created with ID: {ProductId}", product.Id);
 
             return Result<Guid>.Success(
