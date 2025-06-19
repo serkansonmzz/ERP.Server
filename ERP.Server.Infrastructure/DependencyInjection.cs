@@ -4,10 +4,16 @@ using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 using ERP.Server.Infrastructure.Data;
 using ERP.Server.Infrastructure.Data.Repositories;
+using ERP.Server.Infrastructure.Data.Repositories.OutBoxes;
 using ERP.Server.Domain.Interfaces.Repositories;
 using ERP.Server.Domain.Entities;
 using MongoDB.Driver;
 using MongoDB.Driver.Core.Configuration;
+using ERP.Server.Domain.Interfaces;
+using Microsoft.EntityFrameworkCore.Storage;
+
+using ERP.Server.Application.Interfaces;
+using ERP.Server.Infrastructure.Services.Auth;
 
 namespace ERP.Server.Infrastructure;
 
@@ -30,30 +36,41 @@ public static class DependencyInjection
                 }));
 
         // MongoDB Configuration
-        services.Configure<MongoDbSettings>(
-            configuration.GetSection("MongoDbSettings"));
-                
+        var mongoDbSettings = new MongoDbSettings();
+        configuration.GetSection("MongoDbSettings").Bind(mongoDbSettings);
+        
+        services.AddSingleton(mongoDbSettings);
+        
         services.AddSingleton<IMongoClient>(sp =>
         {
-            var settings = sp.GetRequiredService<IOptions<MongoDbSettings>>().Value;
-            return new MongoClient(settings.ConnectionString);
+            return new MongoClient(mongoDbSettings.ConnectionString);
         });
             
         services.AddSingleton<MongoDbContext>();
 
         // Register Command Repositories (MSSQL)
         services.AddScoped<IProductCommandRepository, ProductCommandRepository>();
+        services.AddScoped<IOutboxRepository, OutBoxRepository>();
         
+        services.AddScoped<ICurrentUserService, CurrentUserService>();
+
         // Register Query Repositories (MongoDB)
         services.AddScoped<IProductQueryRepository, ProductQueryRepository>();
         
-        // Register Unit of Work
+        // Register Unit of Work with null checks
         services.AddScoped<IUnitOfWork>(sp =>
         {
-            var dbContext = sp.GetService<ApplicationDbContext>();
-            var mongoContext = sp.GetService<MongoDbContext>();
-            var productCommandRepository = sp.GetService<IProductCommandRepository>();
-            var productQueryRepository = sp.GetService<IProductQueryRepository>();
+            var dbContext = sp.GetRequiredService<ApplicationDbContext>();
+            var mongoContext = sp.GetRequiredService<MongoDbContext>();
+            var productCommandRepository = sp.GetRequiredService<IProductCommandRepository>();
+            var productQueryRepository = sp.GetRequiredService<IProductQueryRepository>();
+            
+            if (dbContext == null || mongoContext == null || 
+                productCommandRepository == null || productQueryRepository == null)
+            {
+                throw new InvalidOperationException("Required services for UnitOfWork are not registered");
+            }
+            
             return new UnitOfWork(dbContext, mongoContext, productCommandRepository, productQueryRepository);
         });
         
@@ -147,14 +164,39 @@ public class UnitOfWork : IUnitOfWork, IAsyncDisposable
         return await _dbContext.SaveChangesAsync(cancellationToken);
     }
 
+    protected virtual void Dispose(bool disposing)
+    {
+        if (!_disposed)
+        {
+            if (disposing)
+            {
+                _currentTransaction?.Dispose();
+                _dbContext.Dispose();
+            }
+            _disposed = true;
+        }
+    }
+
     public void Dispose()
     {
         Dispose(true);
         GC.SuppressFinalize(this);
     }
 
-    public ValueTask DisposeAsync()
+    public async ValueTask DisposeAsync()
     {
-        return ValueTask.CompletedTask;
+        await DisposeAsyncCore().ConfigureAwait(false);
+        Dispose(false);
+        GC.SuppressFinalize(this);
+    }
+
+    protected virtual async ValueTask DisposeAsyncCore()
+    {
+        if (_currentTransaction != null)
+        {
+            await _currentTransaction.DisposeAsync().ConfigureAwait(false);
+            _currentTransaction = null;
+        }
+        await _dbContext.DisposeAsync().ConfigureAwait(false);
     }
 }

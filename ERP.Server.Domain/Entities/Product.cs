@@ -21,10 +21,10 @@ public sealed class Product : Entity
 
     [Required]
     [MaxLength(200)]
-    public required string Name { get; set; }
+    public string Name { get; set; } = string.Empty; // Initialize with default value
     
     [Required]
-    public required ProductType Type { get; set; }
+    public ProductType Type { get; set; } = null!; // Initialize with null-forgiving operator
     
     [MaxLength(1000)]
     public string? Description { get; private set; }
@@ -106,8 +106,8 @@ public sealed class Product : Entity
         SetUpdated(updatedBy);
     }
 
-    public new void Delete()
+    public new void Delete(string? deletedBy = null)
     {
-        base.Delete();
+        base.Delete(deletedBy);
     }
 }
