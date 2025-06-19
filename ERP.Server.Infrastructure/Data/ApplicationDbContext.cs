@@ -50,7 +50,7 @@ public class ApplicationDbContext : DbContext
                
        } 
     
-    // Manuel olarak configuration'ları ekleyin
+    
         modelBuilder.ApplyConfiguration(new ProductConfiguration());
     
     // Veya tüm configuration'ları otomatik olarak uygula
