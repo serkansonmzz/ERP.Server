@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using MongoDB.Driver;
 
 namespace ERP.Server.Infrastructure.Services.Outbox;
 
@@ -54,10 +55,16 @@ public class OutboxProcessorBackgroundService : BackgroundService
                         {
                             case OperationEnum.Insert:
                             case OperationEnum.Update:
-                                await productsCollection.ReplaceOneAsync(p => p.Id == product.Id, product, new ReplaceOptions { IsUpsert = true }, cancellationToken);
+                                await productsCollection.ReplaceOneAsync(
+                                    Builders<Product>.Filter.Eq(p => p.Id, product.Id),
+                                    product,
+                                    new ReplaceOptions { IsUpsert = true },
+                                    cancellationToken);
                                 break;
                             case OperationEnum.Delete:
-                                await productsCollection.DeleteOneAsync(p => p.Id == product.Id, cancellationToken);
+                                await productsCollection.DeleteOneAsync(
+                                    Builders<Product>.Filter.Eq(p => p.Id, product.Id),
+                                    cancellationToken);
                                 break;
                         }
                         message.IsCompleted = true;
@@ -67,13 +74,12 @@ public class OutboxProcessorBackgroundService : BackgroundService
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error processing outbox message {OutboxId}", message.Id);
+                 message.TryCount += 1;
             }
-            finally
-            {
-                message.TryCount += 1;
-                await outboxRepository.UpdateAsync(message, cancellationToken);
-                await outboxRepository.SaveChangesAsync(cancellationToken);
-            }
+
+            await outboxRepository.UpdateAsync(message, cancellationToken);
+            await outboxRepository.SaveChangesAsync(cancellationToken);
+            
         }
     }
 }
