@@ -167,7 +167,7 @@
             },
             "MongoDB.Bson": {
               "target": "Package",
-              "version": "[3.4.0, )"
+              "version": "[2.25.0, )"
             }
           },
           "imports": [
@@ -247,49 +247,27 @@
               "target": "Package",
               "version": "[2.2.0, )"
             },
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[8.0.0, )"
-            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[8.0.6, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[8.0.6, )"
             },
-            "Microsoft.EntityFrameworkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
+            "Microsoft.Extensions.Hosting": {
               "target": "Package",
               "version": "[8.0.0, )"
             },
-            "Microsoft.Extensions.Configuration": {
+            "MongoDB.Bson": {
               "target": "Package",
-              "version": "[8.0.0, )"
-            },
-            "Microsoft.Extensions.Configuration.Binder": {
-              "target": "Package",
-              "version": "[8.0.0, )"
-            },
-            "Microsoft.Extensions.Configuration.Json": {
-              "target": "Package",
-              "version": "[8.0.0, )"
-            },
-            "Microsoft.Extensions.DependencyInjection": {
-              "target": "Package",
-              "version": "[8.0.0, )"
-            },
-            "Microsoft.Extensions.Logging": {
-              "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[2.25.0, )"
             },
             "MongoDB.Driver": {
               "target": "Package",
-              "version": "[3.4.0, )"
+              "version": "[2.25.0, )"
             }
           },
           "imports": [

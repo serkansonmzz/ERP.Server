@@ -18,19 +18,19 @@
           }
         }
       },
-      "MongoDB.Bson/3.4.0": {
+      "MongoDB.Bson/2.25.0": {
         "type": "package",
         "dependencies": {
           "System.Memory": "4.5.5",
           "System.Runtime.CompilerServices.Unsafe": "5.0.0"
         },
         "compile": {
-          "lib/net6.0/MongoDB.Bson.dll": {
+          "lib/netstandard2.1/MongoDB.Bson.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net6.0/MongoDB.Bson.dll": {
+          "lib/netstandard2.1/MongoDB.Bson.dll": {
             "related": ".xml"
           }
         }
@@ -94,21 +94,21 @@
         "lib/netstandard2.1/Ardalis.SmartEnum.xml"
       ]
     },
-    "MongoDB.Bson/3.4.0": {
-      "sha512": "0fBbXqO/ADhWLcgq0cUNizcKEFAuz5klxUc5CWTWV8vdnlOl5QTeAI7Kh64bCoz654ZN7WWOjz9WRw0QGHcqQA==",
+    "MongoDB.Bson/2.25.0": {
+      "sha512": "xQx/qtC2nu9oGiyNqAwfiDpUMweLi0nID677cyKykpwmj5AVMrnd//UwmcmuX95178DeY6rf7cjmA613TQXPiA==",
       "type": "package",
-      "path": "mongodb.bson/3.4.0",
+      "path": "mongodb.bson/2.25.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "README.md",
+        "LICENSE.md",
         "lib/net472/MongoDB.Bson.dll",
         "lib/net472/MongoDB.Bson.xml",
-        "lib/net6.0/MongoDB.Bson.dll",
-        "lib/net6.0/MongoDB.Bson.xml",
+        "lib/netstandard2.0/MongoDB.Bson.dll",
+        "lib/netstandard2.0/MongoDB.Bson.xml",
         "lib/netstandard2.1/MongoDB.Bson.dll",
         "lib/netstandard2.1/MongoDB.Bson.xml",
-        "mongodb.bson.3.4.0.nupkg.sha512",
+        "mongodb.bson.2.25.0.nupkg.sha512",
         "mongodb.bson.nuspec",
         "packageIcon.png"
       ]
@@ -262,7 +262,7 @@
   "projectFileDependencyGroups": {
     "net9.0": [
       "Ardalis.SmartEnum >= 8.0.0",
-      "MongoDB.Bson >= 3.4.0"
+      "MongoDB.Bson >= 2.25.0"
     ]
   },
   "packageFolders": {
@@ -321,7 +321,7 @@
           },
           "MongoDB.Bson": {
             "target": "Package",
-            "version": "[3.4.0, )"
+            "version": "[2.25.0, )"
           }
         },
         "imports": [

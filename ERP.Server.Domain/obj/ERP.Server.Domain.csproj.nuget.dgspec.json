@@ -56,7 +56,7 @@
             },
             "MongoDB.Bson": {
               "target": "Package",
-              "version": "[3.4.0, )"
+              "version": "[2.25.0, )"
             }
           },
           "imports": [
