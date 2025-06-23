@@ -5,6 +5,8 @@ using ERP.Server.Application.Common.Results;
 using ERP.Server.Domain.Interfaces;
 using MediatR;
 
+using Microsoft.Extensions.Logging;
+
 namespace ERP.Server.Application.Features.Products.Queries;
 
 public sealed record GetAllProductsQuery() : IRequest<Result<IReadOnlyList<ProductDto>>>;
@@ -32,7 +34,7 @@ public sealed class GetAllProductsQueryHandler
     {
         try
         {
-            var products = await _unitOfWork.ProductQueryRepository.GetAllAsync(cancellationToken);
+            var products = await _unitOfWork.ProductQueries.GetAllAsync(cancellationToken);
             var result = _mapper.Map<IReadOnlyList<ProductDto>>(products);
             
             return Result<IReadOnlyList<ProductDto>>.Success(
