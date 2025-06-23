@@ -1,0 +1,13 @@
+C:\Users\Serkan\Desktop\Erp_Project\ERP.Server.Domain\obj\Debug\net9.0\ERP.Server.Domain.csproj.AssemblyReference.cache
+C:\Users\Serkan\Desktop\Erp_Project\ERP.Server.Domain\obj\Debug\net9.0\ERP.Server.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Serkan\Desktop\Erp_Project\ERP.Server.Domain\obj\Debug\net9.0\ERP.Server.Domain.AssemblyInfoInputs.cache
+C:\Users\Serkan\Desktop\Erp_Project\ERP.Server.Domain\obj\Debug\net9.0\ERP.Server.Domain.AssemblyInfo.cs
+C:\Users\Serkan\Desktop\Erp_Project\ERP.Server.Domain\obj\Debug\net9.0\ERP.Server.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Serkan\Desktop\Erp_Project\ERP.Server.Domain\obj\Debug\net9.0\ERP.Server.Domain.sourcelink.json
+C:\Users\Serkan\Desktop\Erp_Project\ERP.Server.Domain\bin\Debug\net9.0\ERP.Server.Domain.deps.json
+C:\Users\Serkan\Desktop\Erp_Project\ERP.Server.Domain\bin\Debug\net9.0\ERP.Server.Domain.dll
+C:\Users\Serkan\Desktop\Erp_Project\ERP.Server.Domain\bin\Debug\net9.0\ERP.Server.Domain.pdb
+C:\Users\Serkan\Desktop\Erp_Project\ERP.Server.Domain\obj\Debug\net9.0\ERP.Server.Domain.dll
+C:\Users\Serkan\Desktop\Erp_Project\ERP.Server.Domain\obj\Debug\net9.0\refint\ERP.Server.Domain.dll
+C:\Users\Serkan\Desktop\Erp_Project\ERP.Server.Domain\obj\Debug\net9.0\ERP.Server.Domain.pdb
+C:\Users\Serkan\Desktop\Erp_Project\ERP.Server.Domain\obj\Debug\net9.0\ref\ERP.Server.Domain.dll
